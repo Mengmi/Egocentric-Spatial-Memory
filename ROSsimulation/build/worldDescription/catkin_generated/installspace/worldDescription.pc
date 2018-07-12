@@ -1,0 +1,8 @@
+prefix=/home/mengmi/Desktop/Egocentric-Spatial-Memory/ROSsimulation/install
+
+Name: worldDescription
+Description: Description of worldDescription
+Version: 0.0.0
+Cflags: -I/home/mengmi/Desktop/Egocentric-Spatial-Memory/ROSsimulation/install/include
+Libs: -L/home/mengmi/Desktop/Egocentric-Spatial-Memory/ROSsimulation/install/lib 
+Requires: 

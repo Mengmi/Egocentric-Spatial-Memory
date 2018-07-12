@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<launch>
+  
+  <node pkg="local_map" type="local_map" name="local_map" output="screen">
+    <param name="map_width" value="200"/>
+    <param name="map_height" value="200"/>
+    <param name="map_resolution" value="0.06"/>
+    <!-- Frame names -->
+    <remap from="/local_map/scan" to="/myRobot/laser_scan1" />
+ </node>   
+    
+      
+  
+</launch>
+  
+  
+

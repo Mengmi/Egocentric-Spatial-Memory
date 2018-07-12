@@ -1,0 +1,31 @@
+<launch>
+ 
+<!-- this param is for publishing robot joint states; node: robot_state_publisher-->
+<param name="robot_description" command="cat $(find worldDescription)/urdf/myCylinderGAN.urdf" />
+
+<!-- Create the world in Gazebo: empty, TestWorld, world1-->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find worldDescription)/world/berkley4/berkley_world.world"/>    
+  </include>
+
+<!-- Spawn a robot into Gazebo: myRobot, myCylinder-->
+<node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-file $(find worldDescription)/urdf/myCylinderGAN.urdf -urdf -x 0 -y 0 -z 1 -model myRobot" />
+
+<!-- publish TF world to Robot-->
+<node name="TFpub" pkg="worldDescription" type="TFpub"
+    respawn="false" output="screen">
+</node>
+
+
+<!-- convert joint states to TF transforms for rviz, etc -->
+<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    respawn="false" output="screen">
+	<remap from="/joint_states" to="/myRobot/joint_states" />
+</node>
+
+<!-- RVIZ in Gazebo: rviz-->
+<node pkg="rviz" type="rviz" name="rviz" args="-d $(find worldDescription)/rviz/ros.rivz"/>
+ 
+</launch>
+
+

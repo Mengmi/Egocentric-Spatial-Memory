@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<package>
+  <name>local_map</name>
+  <version>0.1.8</version>
+  <description>The local_map package
+	  The local_map package takes as input a LaserScan message and outputs
+	  a local map as OccupancyGrid. The local map orientation is the same
+	  as the one of the global frame.
+  </description>
+
+  <maintainer email="gael.ecorchard@ciirc.cvut.cz">Gaël Ecorchard</maintainer>
+
+
+  <license>BSD</license>
+
+
+  <url type="website">http://wiki.ros.org/local_map</url>
+  <url type="repository">https://github.com/lama-imr/lama_utilities.git</url>
+  <url type="bugtracker">https://github.com/lama-imr/lama_utilities/issues</url>
+
+
+  <author email="gael.ecorchard@ciirc.cvut.cz">Gaël Ecorchard</author>
+
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>angles</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>lama_msgs</build_depend>
+  <build_depend>map_ray_caster</build_depend>
+  <build_depend>message_generation</build_depend>
+  <build_depend>nav_msgs</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>tf</build_depend>
+
+  <run_depend>angles</run_depend>
+  <run_depend>geometry_msgs</run_depend>
+  <run_depend>lama_msgs</run_depend>
+  <run_depend>map_ray_caster</run_depend>
+  <run_depend>message_runtime</run_depend>
+  <run_depend>nav_msgs</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+  <run_depend>tf</run_depend>
+
+
+  <export>
+  </export>
+</package>

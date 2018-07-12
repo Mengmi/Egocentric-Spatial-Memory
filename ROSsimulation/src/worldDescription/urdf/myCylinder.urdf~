@@ -1,0 +1,232 @@
+<!-- A bunch of stuff cut -->
+
+
+<robot name="myRobot">
+<link name="body">
+  <inertial>
+    <mass value="1000"/>
+    <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+    <origin/>
+  </inertial>
+
+  <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+           <mesh filename="package://worldDescription/urdf/cylinder.dae" scale="0.2 0.2 0.4"/>
+      </geometry>
+    </visual>
+
+
+  <collision>
+    <origin xyz="0 0 .0" rpy="0 0 0" />
+    <geometry>
+           <cylinder length="0.8" radius="0.2"/>
+    </geometry> 
+    
+    <contact_coefficients mu="0" kp="1000.0" kd="5.0"/>
+  </collision>
+</link>
+
+<link name="right_leg">
+    <visual>
+      <geometry>
+        <box size="0.8 .2 .1"/>
+      </geometry>
+      <origin rpy="0 1.57075 0" xyz="0 0 -0.3"/>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="base_to_right_leg" type="fixed">
+    <parent link="body"/>
+    <child link="right_leg"/>
+    <origin xyz="0 0.22 .25"/>
+  </joint>
+
+  <link name="left_leg">
+    <visual>
+      <geometry>
+        <box size="0.8 .2 .1"/>
+      </geometry>
+      <origin rpy="0 1.57075 0" xyz="0 0 -0.3"/>
+      <material name="white"/>
+    </visual>
+  </link>
+
+  <joint name="base_to_left_leg" type="fixed">
+    <parent link="body"/>
+    <child link="left_leg"/>
+    <origin xyz="0 -0.22 .25"/>
+  </joint>
+
+<link name="head">
+    <visual>
+      <geometry>
+        <sphere radius="0.2"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+  </link>
+  <joint name="head_swivel" type="fixed">
+    <parent link="body"/>
+    <child link="head"/>
+    <origin xyz="0 0 0.4"/>
+  </joint>
+
+  <link name="box">
+    <visual>
+      <origin xyz="0 0 0" rpy="3.1415 0 0"/>
+      <geometry>
+           <mesh filename="package://worldDescription/urdf/hokuyo.dae" scale="1 1 1"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="tobox" type="fixed">
+    <parent link="head"/>
+    <child link="box"/>
+    <origin xyz="-0.15 0 0.1414"/>
+</joint>
+
+<!------------------------------------- HL1 --------------------------------------------------->
+<link name="hokuyo_link1">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+         <box size="0.05 0.05 0.05"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+           <mesh filename="package://worldDescription/urdf/hokuyo.dae" scale="1 1 1"/>
+      </geometry>
+    </visual>
+
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+  </link>
+
+
+<joint name="hokuyo_joint_fixed1" type="fixed">
+    <origin xyz="-0.2 0 -0.3" rpy="0 0 3.1415926"/>
+    <parent link="body"/>
+    <child link="hokuyo_link1"/>
+  </joint>
+
+<gazebo reference="hokuyo_link1">
+    <sensor type="ray" name="laser">
+      <pose>0 0 0.0 0 0 0</pose>
+      <visualize>
+	true
+      </visualize>
+      <update_rate>40</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>1081</samples>
+            <resolution>1</resolution>
+            <min_angle>-1.3</min_angle>
+            <max_angle>1.3</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.50</min>
+          <max>30.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <!-- Noise parameters based on published spec for Hokuyo laser
+               achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
+               stddev of 0.01m will put 99.7% of samples within 0.03m of the true
+               reading. -->
+          <mean>0.0</mean>
+          <stddev>0.00</stddev>
+        </noise>
+      </ray>
+      <plugin name="gazebo_ros_head_hokuyo_uav" filename="libgazebo_ros_laser.so">
+        <topicName>/myRobot/laser_scan1</topicName>
+        <frameName>hokuyo_link1</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+<!------------------------------------- camera --------------------------------------------------->
+
+<link name="camera0_link">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+           <box size="0.05 0.05 0.05"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 1.705 0"/>
+      <geometry>
+           <mesh filename="package://worldDescription/urdf/hokuyo.dae" scale="1 1 1"/>
+      </geometry>
+    </visual>
+
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+</link>
+
+<joint name="camera_joint0_fixed" type="fixed">
+    <origin xyz="-0.2 0 0.4" rpy="0 0 3.1415926"/>
+    <parent link="body"/>
+    <child link="camera0_link"/>
+</joint>
+
+<gazebo reference="camera0_link">
+    <sensor type="camera" name="camera0">
+      <update_rate>40.0</update_rate>
+      <camera name="head0">
+        <horizontal_fov>2.4</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>300</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <!-- Noise is sampled independently per pixel on each frame.
+               That pixel's noise value is added to each of its color
+               channels, which at that point lie in the range [0,1]. -->
+          <mean>0.0</mean>
+          <stddev>0.000</stddev>
+        </noise>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>0.0</updateRate>
+        <cameraName>myRobot/camera0</cameraName>
+        <imageTopicName>image_raw0</imageTopicName>
+        <cameraInfoTopicName>camera_info0</cameraInfoTopicName>
+        <frameName>camera0_link</frameName>
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+
+</robot>

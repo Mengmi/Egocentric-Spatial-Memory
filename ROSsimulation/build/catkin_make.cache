@@ -1,0 +1,2 @@
+local_map:worldDescription
+-DCATKIN_DEVEL_PREFIX=/home/mengmi/Desktop/Egocentric-Spatial-Memory/ROSsimulation/devel -DCMAKE_INSTALL_PREFIX=/home/mengmi/Desktop/Egocentric-Spatial-Memory/ROSsimulation/install -G Unix Makefiles

@@ -1,0 +1,8 @@
+prefix=/home/mengmi/Desktop/Egocentric-Spatial-Memory/ROSsimulation/install
+
+Name: local_map
+Description: Description of local_map
+Version: 0.1.8
+Cflags: -I/home/mengmi/Desktop/Egocentric-Spatial-Memory/ROSsimulation/install/include
+Libs: -L/home/mengmi/Desktop/Egocentric-Spatial-Memory/ROSsimulation/install/lib 
+Requires: angles geometry_msgs lama_msgs map_ray_caster message_runtime nav_msgs roscpp sensor_msgs tf

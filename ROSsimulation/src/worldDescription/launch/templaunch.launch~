@@ -1,0 +1,12 @@
+<launch>
+ 
+<!-- this param is for publishing robot joint states; node: robot_state_publisher-->
+<param name="robot_description" command="cat $(find worldDescription)/urdf/myCylinder.urdf" />
+
+<!-- Create the world in Gazebo: empty, TestWorld, world1-->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find worldDescription)/world/world24wd.world"/>    
+  </include>
+
+
+</launch>

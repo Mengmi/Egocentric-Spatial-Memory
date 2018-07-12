@@ -1,0 +1,1 @@
+/usr/bin/c++       CMakeFiles/local_map-test.dir/test/utest.cpp.o  -o /home/mengmi/Desktop/Egocentric-Spatial-Memory/ROSsimulation/devel/lib/local_map/local_map-test  -L/home/mengmi/Desktop/Egocentric-Spatial-Memory/ROSsimulation/build/gtest -rdynamic ../gtest/libgtest.so -lpthread -Wl,-rpath,/home/mengmi/Desktop/Egocentric-Spatial-Memory/ROSsimulation/build/gtest 
