@@ -45,7 +45,7 @@ Moving agents in environemnts using pre-defined trajectories and collecting came
 ```
 rosrun worldDescription MoveRobot
 ```
-Go to ```matlab/preprocess/``` and see ```readme.txt``` for pre-processing collected local maps in ROS.
+Go to ```matlab/preprocess/``` and see ```matlab/preprocess/readme.txt``` for pre-processing collected local maps in ROS.
 
 ## Training and testing EMS model in Torch7
 
@@ -86,11 +86,11 @@ One can skip the training part and download our pre-trained models from [here](h
 
 ## Visualizing results in Matlab
 
-Go to ```matlab/eval/``` folder for visualizing predicted global, local maps and produce quantative evaluation results. See ```readme.txt``` for detailed file descriptions.
+Go to ```matlab/eval/``` folder for visualizing predicted global, local maps and produce quantative evaluation results. See ```matlab/eval/readme.txt``` for detailed file descriptions.
 
 ## Notes
 
-The source code is for illustration purpose only. One might have to change the path in files in order to run the scripts. Feel free to contact us if you find any files are missing. 
+The source code is for illustration purpose only. One might have to change the path in files in order to run the scripts. Our github code has been focusing on 2D3DS dataset. One might need to adjust accordingly for virtual maze dataset.
 
 ## License
 
