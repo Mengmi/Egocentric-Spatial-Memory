@@ -2,7 +2,7 @@
 
 This repository contains an implementation of Egocentric Spatial Memory by Mengmi Zhang, Keng Teck Ma, Shih-Cheng Yen, Joo Hwee Lim, Qi Zhao, and Jiashi Feng, to present at IROS 2018. 
 
-An unofficial copy is downloadable [HERE](https://docs.wixstatic.com/ugd/d2b381_00f54856d717435792a124c30af72872.pdf).
+An unofficial copy of our manuscript is downloadable [HERE](https://docs.wixstatic.com/ugd/d2b381_00f54856d717435792a124c30af72872.pdf).
 
 ## Project Description
 
@@ -14,22 +14,23 @@ Here is a quick demo (left to right: egocentric camera view, ground truth and pr
 
 ## Simulation Environments
 
-We used two datasets for training our ESM model: 2D3DS dataset [HERE](http://buildingparser.stanford.edu/dataset.html) and our own virtual mazes. All 3D envrionments are loaded in Gazebo simulator in ROS. Agent moves in these environments based on pre-defined trajectories. Agent uses the 2D laser scanner to collect ground truth data for training. All the 3D environments are downloadable [HERE](https://drive.google.com/file/d/1lcqF2PByz4i8B1b4wpctzgRuNXtE_JXK/view?usp=sharing). Screenshots for Gazebo simulator on the agent navigating in the environment and RVIZ on visualizing local maps and laser scanning data:
+We used two datasets for training our ESM model: 2D3DS dataset [HERE](http://buildingparser.stanford.edu/dataset.html) and our own virtual mazes. All 3D envrionments are loaded in Gazebo simulator in ROS. Agent moves in these environments based on pre-defined trajectories. Agent uses the 2D laser scanner to collect ground truth data for training. All the 3D environments (2D3DS and virtual mazes) are downloadable [HERE](https://drive.google.com/file/d/1lcqF2PByz4i8B1b4wpctzgRuNXtE_JXK/view?usp=sharing). Screenshots for Gazebo simulator where the agent is navigating in the environment and RVIZ on visualizing current maps and laser scanning data:
 
 | [![gazebo](gif/Capture2.JPG)](gif/Capture2.JPG)  | [![rviz](gif/Capture1.JPG)](gif/Capture1.JPG) 
 |:---:|:---:|
 | Gazebo | RVIZ | 
 
 ### 2D3DS dataset
-We extracted their 3D environment files (area 1 - 6) including their ```.dae``` file and their corresponding textures and created ```.world``` files for Gazebo loading in ```world/berkley*``` folder. See download link above. 
+We extracted their 3D environment files (area 1 - 6) including their ```.dae``` files as well as their corresponding textures and created ```.world``` files for Gazebo loading in ```world/berkley*``` folder. See download link above. 
 
 ### Virtual maze dataset
 We created 8 virtual mazes with different wall textures, maze geometries and lighting conditions and saved them as ```.world``` file. ```world*wd.world``` denotes environments with digits pasted on walls. See download link above. Sample maze snapshot:
+
 ![virtual mazes](gif/Capture3.jpg)
  
 
 ## Data Collection in ROS
-Our code has been test in ROS jade version. See ```ROS_readme.txt``` for detailed instructions. Breifly, loading 3D models in Gazebo, spawning URDF robots:
+Our code has been tested in ROS jade version. See ```ROS_readme.txt``` for detailed instructions. Breifly, loading 3D models in Gazebo, spawning URDF robots:
 ```
 roslaunch worldDescription worldlaunchIROS.launch
 ```
@@ -59,10 +60,11 @@ Clone the repository
 ```
 https://github.com/Mengmi/Egocentric-Spatial-Memory.git
 ```
-After data collection step in ROS, you should have all the data ready for training the network and start testing:
+After data collection step in ROS, you should have all the data ready for training the network and start testing.
+
 In ```/torchMM```:
 
-Run "GenerateDataBaseUCB_IROS.lua" to convert ```mat``` files as ```t7``` files. A complete list of ```datalist``` files are downloadable [HERE](https://drive.google.com/open?id=1yTDMc7UudvmbOv-P2D9SowDsc6gG894x)
+Run ```GenerateDataBaseUCB_IROS.lua" to convert.mat``` files as ```.t7``` files. A complete list of ```datalist``` files are downloadable [HERE](https://drive.google.com/open?id=1yTDMc7UudvmbOv-P2D9SowDsc6gG894x)
 
 Run ```UCB_saveInput_IROS.lua``` to pre-process the data and store ground truth data in batches of size 10 and time steps 32
 
